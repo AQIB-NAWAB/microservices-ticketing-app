@@ -1,0 +1,38 @@
+apiVersion: skaffold/v4beta3
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+    - image: aqibnawab/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: aqibnawab/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+    - image: aqibnawab/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+          - src: 'src/**/*.ts'
+            dest: .
+          
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
