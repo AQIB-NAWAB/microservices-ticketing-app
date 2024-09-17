@@ -32,6 +32,16 @@ build:
             dest: .
           - src: 'src/**/*.ts'
             dest: .
+    - image: aqibnawab/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+          - src: 'src/**/*.ts'
+            dest: .
           
 manifests:
   rawYaml:
