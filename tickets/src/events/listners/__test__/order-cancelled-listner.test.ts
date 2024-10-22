@@ -33,11 +33,22 @@ const setup = async () => {
         ack:jest.fn()
     }
 
-    return {listner,ticket,data,msg}
+    return {listner,ticket,orderId,data,msg}
 
 }
 
 
+it('updates the ticket, publish the event, and acks the message ',async()=>{
+    const {msg , data , ticket  ,orderId , listner }=await setup();
+
+    await listner.onMessage(data,msg);
+
+    const updatedTicket = await Ticket.findById(ticket.id);
+    expect(updatedTicket!.orderId).not.toBeDefined();
+    expect(msg.ack).toHaveBeenCalled();
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
+
+})
 
 
     

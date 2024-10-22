@@ -12,9 +12,19 @@ const header = ({ currentUser }) => {
       href: "/auth/signin",
     },
     currentUser &&{
+      label: "Sell Tickets",
+      href: "/tickets/new",
+    },
+    currentUser &&{
+      label: "My Orders",
+      href: "/orders",
+    },
+    
+    currentUser &&{
       label: "Sign Out",
       href: "/auth/signout",
-    },
+    }
+ 
   ];
   return (
     <nav className="navbar navbar-light bg-light px-4">

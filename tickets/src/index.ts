@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
 import { app } from "./app"
 import { natsWrapper } from "./nats-wrapper"
+import { OrderCreatedListner } from "./events/listners/order-created-listner"
+import { OrderCancelledListner } from "./events/listners/order-cancelled-listner"
 
 
 const start = async () => {
@@ -12,6 +14,11 @@ const start = async () => {
     })
     process.on('SIGINT', () => natsWrapper.client.close())
     process.on('SIGTERM', () => natsWrapper.client.close())
+
+    new OrderCreatedListner(natsWrapper.client).listen()
+    new OrderCancelledListner(natsWrapper.client).listen()
+
+
     await mongoose.connect(process.env.MONGO_URI!!)
     console.log('[Tickets]---> Connected to MongoDB')
     // console log the @aqibtickets/common package version

@@ -10,9 +10,9 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: aqibnawab/client
       context: client
@@ -20,7 +20,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: '**/*.js'
+          - src: "**/*.js"
             dest: .
     - image: aqibnawab/tickets
       context: tickets
@@ -28,9 +28,9 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
     - image: aqibnawab/orders
       context: orders
@@ -38,11 +38,27 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
-          - src: 'src/**/*.ts'
+          - src: "src/**/*.ts"
             dest: .
-          
+    - image: aqibnawab/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: aqibnawab/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+
 manifests:
   rawYaml:
     - ./infra/k8s/*
