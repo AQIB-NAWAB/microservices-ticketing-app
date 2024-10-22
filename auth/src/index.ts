@@ -5,6 +5,7 @@ import { app } from "./app"
 
 const start = async () => {
   try {
+    console.log('[AUTH]---> Starting up...')
     await mongoose.connect(process.env.MONGO_URI!!)
     console.log('[AUTH]---> Connected to MongoDB')
     // console log the @aqibtickets/common package version
