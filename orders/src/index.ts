@@ -20,6 +20,7 @@ const start = async () => {
     new ExpirationCompleteListener(natsWrapper.client).listen()
     new PaymentCreatedListner(natsWrapper.client).listen()
 
+    console.log('[Orders]---> starting...')
 
     await mongoose.connect(process.env.MONGO_URI!!)
     console.log('[Orders]---> Connected to MongoDB')
