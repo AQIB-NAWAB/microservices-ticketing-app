@@ -35,15 +35,18 @@ async (req: Request, res: Response) => {
         throw new BadRequestError('Cannot pay for an cancelled order');
     }
 
-   const response= await stripe.charges.create({
+    const response= await stripe.charges.create({
         currency: 'usd',
         amount: order.price * 100,
-        source: token,
+        source: token
     });
 
-    const payment=Payment.build({
+
+
+
+    const payment= Payment.build({
         orderId,
-        stripeId:response.id
+        stripeId: response.id || Math.random().toString()
     });
 
     await payment.save();
